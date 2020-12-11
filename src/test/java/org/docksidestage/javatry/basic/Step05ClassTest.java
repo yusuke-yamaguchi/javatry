@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,12 +19,13 @@ import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.unit.PlainTestCase;
 
+// done yamaguchi author変えてください by jflute (2020/10/16)
 /**
  * The test of class. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author Yusuke
  */
 public class Step05ClassTest extends PlainTestCase {
 
@@ -38,29 +39,29 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_howToUse_basic() {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(7400);
-        int sea = booth.getQuantity();
-        log(sea); // your answer? => test
+        int sea = booth.getQuantity(); // 数量を取得　10から1減ったので9を取得
+        log(sea); // your answer? => 9 
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_overpay() {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
-        Integer sea = booth.getSalesProceeds();
-        log(sea); // your answer? => 
+        Integer sea = booth.getSalesProceeds(); // 売上の値を取得　0→10000
+        log(sea); // your answer? => 10000
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_nosales() {
         TicketBooth booth = new TicketBooth();
-        Integer sea = booth.getSalesProceeds();
-        log(sea); // your answer? => 
+        Integer sea = booth.getSalesProceeds(); // チケットを買っていないため売上の値は0円　null
+        log(sea); // your answer? => null
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_wrongQuantity() {
         Integer sea = doTest_class_ticket_wrongQuantity();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 9
     }
 
     private Integer doTest_class_ticket_wrongQuantity() {
@@ -104,11 +105,11 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_makeMethod_twoday() {
         // comment out after making the method
-        //TicketBooth booth = new TicketBooth();
-        //int money = 14000;
-        //int change = booth.buyTwoDayPassport(money);
-        //Integer sea = booth.getSalesProceeds() + change;
-        //log(sea); // should be same as money
+        TicketBooth booth = new TicketBooth();
+        int money = 14000;
+        int change = booth.buyTwoDayPassport(money);
+        Integer sea = booth.getSalesProceeds() + change; // change おつり
+        log(sea); // should be same as money
 
         // and show two-day passport quantity here
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // your answer? => 
 
         // cannot reassign because it is used at callback process
-        //title = "wave";
+        //name = "wave";
     }
 
     /**
@@ -163,8 +163,8 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     //                                                                            Optional
     //                                                                            ========
     /**
-     * Are the strings by two log() methods same? (yes or no) <br>
-     * (二つのlog()によって出力される文字列は同じでしょうか？ (yes or no))
+     * Are the strings by three log() methods same? (yes or no) <br>
+     * (三つのlog()によって出力される文字列は同じでしょうか？ (yes or no))
      */
     public void test_java8_optional_concept() {
         St8Member oldmember = new St8DbFacade().oldselectMember(1);
@@ -176,6 +176,9 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             St8Member member = optMember.get();
             log(member.getMemberId(), member.getMemberName());
         }
+        optMember.ifPresent(member -> {
+            log(member.getMemberId(), member.getMemberName());
+        });
         // your answer? => 
     }
 

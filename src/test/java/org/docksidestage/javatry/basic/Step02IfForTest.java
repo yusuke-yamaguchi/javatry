@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author yusuke
  */
 public class Step02IfForTest extends PlainTestCase {
 
@@ -52,7 +52,7 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 7;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -67,31 +67,31 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 9;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_if_elseif_nested() {
-        boolean land = false;
+        boolean land = false; // landの初期値はfalse
         int sea = 904;
         if (sea > 904) {
             sea = 2001;
-        } else if (land && sea >= 904) {
+        } else if (land && sea >= 904) { // false && sea >= 904
             sea = 7;
-        } else if (sea >= 903 || land) {
+        } else if (sea >= 903 || land) { // sea >= 903 || false
             sea = 8;
             if (!land) {
                 land = true;
             } else if (sea <= 903) {
                 sea++;
-            }
+            } // land = true
         } else {
             sea = 9;
         }
-        if (land) {
+        if (land) { // land = true
             sea = 10;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 10
     }
 
     // ===================================================================================
@@ -101,13 +101,13 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_for_inti_basic() {
         List<String> stageList = prepareStageList();
         String sea = null;
-        for (int i = 0; i < stageList.size(); i++) {
-            String stage = stageList.get(i);
-            if (i == 1) {
-                sea = stage;
+        for (int i = 0; i < stageList.size(); i++) { // iの値がstageListの要素数より大きくなるまで
+            String stage = stageList.get(i); // stageにi番目の文字列を代入
+            if (i == 1) { // iの値が1のとき
+                sea = stage; //seaにstageの文字列を代入
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -115,9 +115,9 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList();
         String sea = null;
         for (String stage : stageList) {
-            sea = stage;
+            sea = stage; // seaにstageの文字列を代入
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => magiclamp
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -125,31 +125,31 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList();
         String sea = null;
         for (String stage : stageList) {
-            if (stage.startsWith("br")) {
-                continue;
+            if (stage.startsWith("br")) { // stageに代入されている文字列が"br"で始まる
+                continue; // 次の処理を行わない
             }
-            sea = stage;
-            if (stage.contains("ga")) {
-                break;
+            sea = stage; // seaにstageの値を代入
+            if (stage.contains("ga")) { // stageに代入されている文字列が"ga"を含む
+                break; // おわり
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_listforeach_basic() {
         List<String> stageList = prepareStageList();
-        StringBuilder sb = new StringBuilder();
-        stageList.forEach(stage -> {
-            if (sb.length() > 0) {
+        StringBuilder sb = new StringBuilder(); // StringBuilder : 文字列を扱うクラス（Immutable）
+        stageList.forEach(stage -> { // コレクション名(Listなどの変数名).forEach(引数 -> 繰り返し行う処理(引数))
+            if (sb.length() > 0) { // sbの文字列の文字数が0以上のとき
                 return;
             }
-            if (stage.contains("i")) {
-                sb.append(stage);
+            if (stage.contains("i")) { // stageに代入されている文字列が"i"を含む
+                sb.append(stage); // stageの文字列をsbに追加
             }
         });
-        String sea = sb.toString();
-        log(sea); // your answer? => 
+        String sea = sb.toString(); // sbをstring型に変換しseaに代入
+        log(sea); // your answer? => dockside
     }
 
     // ===================================================================================
@@ -161,6 +161,14 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_making() {
         // write if-for here
+        List<String> stageList = prepareStageList();
+        List<String> sea = new ArrayList<>();
+        stageList.forEach(stage -> {
+            if (stage.contains("a")) { // stageの文字列がaを含む場合
+                sea.add(stage);
+            }
+        });
+        log(sea);
     }
 
     // ===================================================================================
@@ -172,15 +180,33 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_refactor_foreach_to_forEach() {
         List<String> stageList = prepareStageList();
-        String sea = null;
-        for (String stage : stageList) {
-            if (stage.startsWith("br")) {
-                continue;
+        //        String sea = null;
+        //        for (String stage : stageList) {
+        //            if (stage.startsWith("br")) {
+        //                continue;
+        //            }
+        //            sea = stage;
+        //            if (stage.contains("ga")) {
+        //                break;
+        //            }
+        //        }
+        StringBuilder gaSb = new StringBuilder(); // ga専用のStringBuilderにする
+        ArrayList<String> reserveList = new ArrayList<String>(); // 予備のリストを定義
+        String sea;
+        stageList.forEach(stage -> {
+            if (stage.startsWith("br") || gaSb.length() > 0) { // brで始まる場合、もしくはgaが格納されている場合
+                return;
             }
-            sea = stage;
-            if (stage.contains("ga")) {
-                break;
+            reserveList.clear(); // 予備のリストの中身をクリア
+            reserveList.add(stage); // 一旦予備のリストに格納
+            if (stage.contains("ga")) { // gaが含まれる場合
+                gaSb.append(stage); // gaSbにstageの文字列を追加
             }
+        });
+        if (gaSb.length() == 0) { // gaSbにgaが入っていない場合
+            sea = reserveList.get(0); // 予備のリストの値をseaに代入
+        } else {
+            sea = gaSb.toString(); // gaSbの値をseaに代入
         }
         log(sea); // should be same as before-fix
     }
@@ -206,8 +232,9 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = new ArrayList<>();
         stageList.add("broadway");
         stageList.add("dockside");
-        stageList.add("hangar");
+        //        stageList.add("hangar");
         stageList.add("magiclamp");
+        //        stageList.add("ga");
         return stageList;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 /**
  * @author jflute
+ * @author Yusuke
  */
 public class TicketBooth {
 
@@ -25,6 +26,7 @@ public class TicketBooth {
     //                                                                          ==========
     private static final int MAX_QUANTITY = 10;
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
+    private static final int TWO_DAY_PRICE = 13200;
 
     // ===================================================================================
     //                                                                           Attribute
@@ -41,18 +43,99 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
+    // リファクタリング前
+    //    public void buyOneDayPassport(int handedMoney) {
+    //        if (quantity <= 0) { // 在庫数が0以下の場合"Sold out（売り切れ）を投げる"
+    //            throw new TicketSoldOutException("Sold out");
+    //        }
+    //        // 
+    //        // --quantity; // 在庫数から1減らす
+    //        if (handedMoney < ONE_DAY_PRICE) { // 持っている金額より1日パスの金額が大きい場合（つまり手持ちのお金が足りない場合）
+    //            throw new TicketShortMoneyException("Short money: " + handedMoney); // 
+    //        }
+    //        --quantity;
+    //        if (salesProceeds != null) { // 売上収益が0ではない場合（売れた場合）
+    //            salesProceeds = salesProceeds + ONE_DAY_PRICE;
+    //        } else {
+    //            salesProceeds = ONE_DAY_PRICE;
+    //        }
+    //    }
+    //
+    //    public int buyTwoDayPassport(int handedMoney) {
+    //        if (quantity <= 1) { // 在庫数が2以下の場合"Sold out（売り切れ）を投げる"
+    //            throw new TicketSoldOutException("Sold out");
+    //        }
+    //        if (handedMoney < TWO_DAY_PRICE) {
+    //            throw new TicketShortMoneyException("Short money: " + handedMoney);
+    //        }
+    //        quantity -= 2; // 2枚ずつ在庫から消費する
+    //        if (salesProceeds != null) {
+    //            salesProceeds = salesProceeds + TWO_DAY_PRICE;
+    //        } else {
+    //            salesProceeds = TWO_DAY_PRICE;
+    //        }
+    //        return handedMoney - TWO_DAY_PRICE; // おつりの値を返す
+    //    }
+
+    // done リファクタリング途中　チケット購入のフローをもう少しまとめたい (2020/10/16)
     public void buyOneDayPassport(int handedMoney) {
-        if (quantity <= 0) {
+        doBuyPassport(1, ONE_DAY_PRICE, handedMoney);
+    }
+
+    public int buyTwoDayPassport(int handedMoney) {
+        doBuyPassport(2, TWO_DAY_PRICE, handedMoney);
+        return handedMoney - TWO_DAY_PRICE;
+    }
+
+    /**
+     * チケット購入周りの処理
+     * @param ticketCount チケット枚数
+     * @param ticketPrice チケットの値段
+     * @param handedMoney 所持金
+     */
+    private void doBuyPassport(int ticketCount, int ticketPrice, int handedMoney) {
+        assertInventoryRemained(ticketCount); // 在庫数確認処理
+        possessionMoneyEnough(ticketPrice, handedMoney); // 所持金とチケットの金額確認処理
+        prosessPurchasedTicketInventory(ticketPrice, ticketCount); // チケット購入後の在庫と売上処理
+    }
+
+    /**
+     * 在庫数確認処理
+     * @param passportDays 選択したチケット枚数
+     */
+    // done javayusuke checkInventory() or assertInventoryRemained/Exists() by jflute (2020/10/16)
+    // メソッド名を選択して、ctrl+1 => rename in file
+    private void assertInventoryRemained(int passportDays) {
+        if (quantity < passportDays) { // 在庫数がパスポートの日数以下の場合"Sold out（売り切れ）を投げる"
             throw new TicketSoldOutException("Sold out");
         }
-        --quantity;
-        if (handedMoney < ONE_DAY_PRICE) {
+    }
+
+    /**
+     * 所持金とチケットの金額確認処理
+     * @param ticketMoney　選択したチケットの値段
+     * @param handedMoney　所持金
+     */
+    private void possessionMoneyEnough(int ticketMoney, int handedMoney) {
+        if (handedMoney < ticketMoney) { // 持っている金額より購入予定のパスポートの金額が大きい場合（つまり手持ちのお金が足りない場合）エラーを投げる
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
-        if (salesProceeds != null) {
-            salesProceeds = salesProceeds + handedMoney;
+    }
+
+    /**
+     * チケット購入後の在庫と売上処理
+     * @param boughtTicketPrice　購入済みチケットの値段
+     * @param boughtTicketCount　購入済みチケットの枚数
+     */
+
+    // done メソッド名と引数名を修正する。
+    private void prosessPurchasedTicketInventory(int boughtTicketPrice, int boughtTicketCount) {
+        quantity -= boughtTicketCount;
+
+        if (salesProceeds != null) { // 売上収益が0ではない場合（売れた場合）
+            salesProceeds = salesProceeds + boughtTicketPrice;
         } else {
-            salesProceeds = handedMoney;
+            salesProceeds = boughtTicketPrice;
         }
     }
 

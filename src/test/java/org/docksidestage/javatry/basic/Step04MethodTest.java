@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,32 +35,32 @@ public class Step04MethodTest extends PlainTestCase {
      */
     public void test_method_call_basic() {
         String sea = supplySomething();
-        log(sea); // your answer? =>
+        log(sea); // your answer? => over
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_call_many() {
-        String sea = functionSomething("mystic");
+        String sea = functionSomething("mystic"); // seaに"mysmys"を代入
         consumeSomething(supplySomething());
         runnableSomething();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => mysmys
     }
 
     private String functionSomething(String name) {
-        String replaced = name.replace("tic", "mys");
+        String replaced = name.replace("tic", "mys"); // "tic"を"mys"に置き換える　"mystic" → "mysmys"
         log("in function: {}", replaced);
         return replaced;
     }
 
     private String supplySomething() {
-        String sea = "over";
+        String sea = "over"; // seaに"over"を代入
         log("in supply: {}", sea);
         return sea;
     }
 
     private void consumeSomething(String sea) {
-        log("in consume: {}", sea.replace("over", "mystic"));
-    }
+        log("in consume: {}", sea.replace("over", "mystic")); // "over"を"mystic"に置き換えて表示
+    } // 返り値なし
 
     private void runnableSomething() {
         String sea = "outofshadow";
@@ -70,13 +70,13 @@ public class Step04MethodTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_object() {
         St4MutableStage mutable = new St4MutableStage();
-        int sea = 904;
-        boolean land = false;
-        helloMutable(sea - 4, land, mutable);
+        int sea = 904; // seaに904を代入
+        boolean land = false; // landにfalseを指定
+        helloMutable(sea - 4, land, mutable); // mutable　:　mystic
         if (!land) {
-            sea = sea + mutable.getStageName().length();
+            sea = sea + mutable.getStageName().length(); // 904 + mysticの文字数（6）  904 + 6 = 910
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 910
     }
 
     private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
@@ -107,15 +107,15 @@ public class Step04MethodTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_instanceVariable() {
-        hasAnnualPassport = true;
-        int sea = inParkCount;
-        offAnnualPassport(hasAnnualPassport);
-        for (int i = 0; i < 100; i++) {
+        hasAnnualPassport = true; // hasAnnualPassportにtrueを指定
+        int sea = inParkCount; // seaにinParkCountを代入
+        offAnnualPassport(hasAnnualPassport); // hasAnnualPassport ： true
+        for (int i = 0; i < 100; i++) { // i = 0～99
             goToPark();
         }
-        ++sea;
-        sea = inParkCount;
-        log(sea); // your answer? => 
+        ++sea; // sea = 1
+        sea = inParkCount; // seaにinParkCountを代入　inParkCount = 100
+        log(sea); // your answer? => 100
     }
 
     private void offAnnualPassport(boolean hasAnnualPassport) {
@@ -123,7 +123,7 @@ public class Step04MethodTest extends PlainTestCase {
     }
 
     private void goToPark() {
-        if (hasAnnualPassport) {
+        if (hasAnnualPassport) { // trueの場合
             ++inParkCount;
         }
     }
@@ -150,14 +150,33 @@ public class Step04MethodTest extends PlainTestCase {
      * o showSea(): 一つのString引数、戻り値なし、引数をlog()で表示する
      * </pre>
      */
+    private boolean availableLogging = true; // availableLoggingにtrueを指定
+
     public void test_method_making() {
-        // comment out after making these methods
-        //String replaced = replaceCtoB(replaceAtoB("ABC"));
-        //String sea = addPrefix("broadway", replaced);
-        //if (isAvailableLogging()) {
-        //    showSea(sea);
-        //}
+        String replaced = replaceCtoB(replaceAtoB("ABC")); // replaced = "BBB"
+        String sea = addPrefix("broadway", replaced); // sea = broadway:BBB 
+        if (isAvailableLogging()) {
+            showSea(sea);
+        }
     }
 
-    // write methods here
+    private String replaceAtoB(String replaceTarget) {
+        return replaceTarget.replace("A", "B"); // AをBに置き換え
+    }
+
+    private String replaceCtoB(String replaceTarget) {
+        return replaceTarget.replace("C", "B"); // CをBに置き換え
+    }
+
+    private String addPrefix(String prefix, String linkText) {
+        return prefix + ":" + linkText; // ２つの引数を連結したものを戻す
+    }
+
+    private boolean isAvailableLogging() {
+        return availableLogging;
+    }
+
+    private void showSea(String sea) {
+        log(sea);
+    }
 }

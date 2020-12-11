@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,6 @@ import org.docksidestage.unit.PlainTestCase;
 /**
  * The test of String with color-box, using Stream API you can. <br>
  * Show answer by log() for question of javadoc.
- * <pre>
- * addition:
- * o e.g. "string in color-boxes" means String-type content in space of color-box
- * o don't fix the YourPrivateRoom class and color-box classes
- * </pre>
  * @author jflute
  * @author your_name_here
  */

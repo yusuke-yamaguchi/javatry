@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -97,19 +97,18 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
     //                                                           Execute like WebFramework
     //                                                           =========================
     /**
-     * Execute callFriend() of accessor action by UsingDiWebFrameworkProcess. (Animal as TooLazyDog) <br>
-     * (accessor の Action の callFriend() を UsingDiWebFrameworkProcess 経由で実行してみましょう (Animal は TooLazyDog として))
+     * Execute callFriend() of accessor action by UsingDiWebFrameworkProcess. <br>
+     * (accessor の Action の callFriend() を UsingDiWebFrameworkProcess 経由で実行してみましょう)
      */
     public void test_usingdi_UsingDiWebFrameworkProcess_callfriend_accessor() {
         // execution code here
     }
 
     /**
-     * Execute callFriend() of annotation and delegating actions by UsingDiWebFrameworkProcess. <br>
-     *  (Animal as TooLazyDog...so you can increase hit-points of sleepy cat in this method) <br>
-     * <br>
-     * (annotation, delegating の Action の callFriend() を UsingDiWebFrameworkProcess 経由で実行してみましょう <br>
-     *  (Animal は TooLazyDog として...ということで眠い猫のヒットポイントをこのメソッド内で増やしてもOK))
+     * Execute callFriend() of annotation and delegating actions by UsingDiWebFrameworkProcess.
+     * (And you can increase hit-points of sleepy cat in this method) <br>
+     * (annotation, delegating の Action の callFriend() を UsingDiWebFrameworkProcess 経由で実行してみましょう。
+     * (眠い猫のヒットポイントをこのメソッド内で増やしてもOK))
      */
     public void test_usingdi_UsingDiWebFrameworkProcess_callfriend_annotation_delegating() {
         // execution code here

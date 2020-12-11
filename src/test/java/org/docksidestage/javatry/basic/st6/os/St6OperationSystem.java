@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,13 @@ public class St6OperationSystem {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final String osType;
     private final String loginId;
+    private String osType;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public St6OperationSystem(String osType, String loginId) {
-        this.osType = osType;
+    public St6OperationSystem(String loginId) {
         this.loginId = loginId;
     }
 
