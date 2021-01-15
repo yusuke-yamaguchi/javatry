@@ -78,8 +78,12 @@ public class TicketBooth {
     //    }
 
     // done リファクタリング途中　チケット購入のフローをもう少しまとめたい (2020/10/16)
-    public void buyOneDayPassport(int handedMoney) {
+    public Ticket buyOneDayPassport(int handedMoney) {
         doBuyPassport(1, ONE_DAY_PRICE, handedMoney);
+
+        final int ticketPrice = ONE_DAY_PRICE;
+        Ticket ticket = new Ticket(ticketPrice);
+        return ticket;
     }
 
     public int buyTwoDayPassport(int handedMoney) {
