@@ -117,8 +117,8 @@ public class TicketBooth {
 
     /**
      * 所持金とチケットの金額確認処理
-     * @param ticketMoney　選択したチケットの値段
-     * @param handedMoney　所持金
+     * @param ticketMoney 選択したチケットの値段
+     * @param handedMoney 所持金
      */
     private void possessionMoneyEnough(int ticketMoney, int handedMoney) {
         if (handedMoney < ticketMoney) { // 持っている金額より購入予定のパスポートの金額が大きい場合（つまり手持ちのお金が足りない場合）エラーを投げる
@@ -128,8 +128,8 @@ public class TicketBooth {
 
     /**
      * チケット購入後の在庫と売上処理
-     * @param boughtTicketPrice　購入済みチケットの値段
-     * @param boughtTicketCount　購入済みチケットの枚数
+     * @param boughtTicketPrice 購入済みチケットの値段
+     * @param boughtTicketCount 購入済みチケットの枚数
      */
 
     // done メソッド名と引数名を修正する。
