@@ -86,9 +86,14 @@ public class TicketBooth {
         return ticket;
     }
 
-    public int buyTwoDayPassport(int handedMoney) {
-        doBuyPassport(2, TWO_DAY_PRICE, handedMoney);
-        return handedMoney - TWO_DAY_PRICE;
+    public TicketBuyResult buyTwoDayPassport(int handedMoney) {
+        final int ticketPrice = TWO_DAY_PRICE;
+        doBuyPassport(2, ticketPrice, handedMoney);
+        final int change = handedMoney - ticketPrice;
+        Ticket ticket = new Ticket(ticketPrice);
+        TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
+
+        return buyResult;
     }
 
     /**
