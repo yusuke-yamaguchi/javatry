@@ -164,34 +164,30 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
     }
 
+    /**
+     * Now you can use only one in spite of two-day passport, so fix Ticket to be able to handle plural days. <br>
+     * (TwoDayPassportなのに一回しか利用できません。複数日数に対応できるようにTicketを修正しましょう)
+     */
+    public void test_class_moreFix_usePluralDays() {
+        // your confirmation code here
+    }
+
     // ===================================================================================
     //                                                                           Good Luck
     //                                                                           =========
     /**
-     * Now only one use with two-day passport, so split ticket in one-day and two-day class and use interface. <br>
-     * <pre>
-     * o change Ticket class to interface, define doInPark(), getDisplayPrice() in it
-     * o make class for one-day and class for plural days (called implementation class)
-     * o make implementation classes implement Ticket interface
-     * o doInPark() of plural days can execute defined times
-     * </pre>
-     * (TwoDayのチケットが一回しか利用できません。OneDayとTwoDayのクラスを分けてインターフェースを使うようにしましょう)
-     * <pre>
-     * o Ticket をインターフェース(interface)にして、doInPark(), getDisplayPrice() を定義
-     * o OneDay用のクラスと複数日用のクラスを作成 (実装クラスと呼ぶ)
-     * o 実装クラスが Ticket を implements するように
-     * o 複数日用のクラスでは、決められた回数だけ doInPark() できるように
-     * </pre>
+     * Fix it to be able to buy four-day passport (price is 22400). <br>
+     * (FourDayPassport (金額は22400) のチケットも買えるようにしましょう)
      */
-    public void test_class_moreFix_useInterface() {
+    public void test_class_moreFix_wonder_four() {
         // your confirmation code here
     }
 
     /**
-     * Fix it to be able to buy four-day passport (price is 22400). <br>
-     * (FourDayPassport (金額は22400) のチケットも買えるようにしましょう)
+     * Fix it to be able to buy night-only two-day passport (price is 7400). <br>
+     * (NightOnlyTwoDayPassport (金額は7400) のチケットも買えるようにしましょう)
      */
-    public void test_class_moreFix_wonder() {
+    public void test_class_moreFix_wonder_night() {
         // your confirmation code here
     }
 
@@ -200,6 +196,6 @@ public class Step05ClassTest extends PlainTestCase {
      * (その他、気になるところがあったらリファクタリングしてみましょう (例えば、バランスの良いメソッド名や変数名になっていますか？))
      */
     public void test_class_moreFix_yourRefactoring() {
-        // write confirmation code here
+        // your confirmation code here
     }
 }
