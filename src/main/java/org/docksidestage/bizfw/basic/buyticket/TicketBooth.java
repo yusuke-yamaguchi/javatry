@@ -79,19 +79,22 @@ public class TicketBooth {
 
     // done リファクタリング途中　チケット購入のフローをもう少しまとめたい (2020/10/16)
     public Ticket buyOneDayPassport(int handedMoney) {
-        doBuyPassport(1, ONE_DAY_PRICE, handedMoney);
-
         final int ticketPrice = ONE_DAY_PRICE;
-        Ticket ticket = new Ticket(ticketPrice);
+        doBuyPassport(1, ticketPrice, handedMoney);
+
+        String ticketType = ""; // TicketTypeクラスから判別用の値を取得する
+        Ticket ticket = new Ticket(ticketPrice, ticketType);
         return ticket;
     }
 
     public TicketBuyResult buyTwoDayPassport(int handedMoney) {
         final int ticketPrice = TWO_DAY_PRICE;
         doBuyPassport(2, ticketPrice, handedMoney);
+
         final int change = handedMoney - ticketPrice;
-        // TODO ticketクラスの作成もdoBuyPassportで行う
-        Ticket ticket = new Ticket(ticketPrice);
+        // TODO ticketクラスの作成もdoBuyPassportで行う ← 後ほど対応します
+        String ticketType = ""; // TicketTypeクラスから判別用の値を取得する
+        Ticket ticket = new Ticket(ticketPrice, ticketType);
         TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
 
         return buyResult;
@@ -107,7 +110,6 @@ public class TicketBooth {
         assertInventoryRemained(ticketCount); // 在庫数確認処理
         possessionMoneyEnough(ticketPrice, handedMoney); // 所持金とチケットの金額確認処理
         prosessPurchasedTicketInventory(ticketPrice, ticketCount); // チケット購入後の在庫と売上処理
-        ticket(ticketPrice);
     }
 
     /**
@@ -148,14 +150,6 @@ public class TicketBooth {
         } else {
             salesProceeds = boughtTicketPrice;
         }
-    }
-
-    /**
-     * @param ticketPrice チケットの値段
-     */
-    private Ticket ticket(int ticketPrice) {
-        Ticket ticket = new Ticket(ticketPrice);
-        return ticket;
     }
 
     public static class TicketSoldOutException extends RuntimeException {

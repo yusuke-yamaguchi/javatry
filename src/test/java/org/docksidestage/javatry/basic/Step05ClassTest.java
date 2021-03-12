@@ -159,7 +159,7 @@ public class Step05ClassTest extends PlainTestCase {
 
     /**
      * Now you cannot judge ticket type "one-day or two-day?", so add method to judge it. <br>
-     * (チケットをもらってもOneDayなのかTwoDayなのか区別が付きません。区別を付けられるメソッドを追加しましょう)
+     * (チケットをもらってもOneDayなのかTwoDayなのか判別が付きません。判別を付けられるメソッドを追加しましょう)
      */
     public void test_class_moreFix_type() {
         TicketBooth booth = new TicketBooth();
@@ -167,7 +167,13 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
         Ticket twoDayPassport = twoDayPassportResult.getTicket();
         log(twoDayPassport.getDisplayPrice());
-        log(); // TODO チケットの種類を判別する値を表示させる
+        // TODO プログラムにもコードを読む人にもわかるようにチケットを判別する処理を追加する。
+        // if文を使用して判別処理を行う
+        if (twoDayPassport.getTicketType().equals("")) {
+            log("");
+        } else {
+            log("");
+        }
     }
 
     /**
