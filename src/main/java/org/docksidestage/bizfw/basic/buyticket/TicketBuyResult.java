@@ -10,8 +10,8 @@ public class TicketBuyResult {
     //                                                                          Definition
     //                                                                          ==========
 
-    private Ticket ticket;
-    private int change;
+    private final Ticket ticket;
+    private final int change;
 
     // ===================================================================================
     //                                                                           Attribute

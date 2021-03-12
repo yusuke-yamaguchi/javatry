@@ -90,6 +90,7 @@ public class TicketBooth {
         final int ticketPrice = TWO_DAY_PRICE;
         doBuyPassport(2, ticketPrice, handedMoney);
         final int change = handedMoney - ticketPrice;
+        // TODO ticketクラスの作成もdoBuyPassportで行う
         Ticket ticket = new Ticket(ticketPrice);
         TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
 
@@ -106,6 +107,7 @@ public class TicketBooth {
         assertInventoryRemained(ticketCount); // 在庫数確認処理
         possessionMoneyEnough(ticketPrice, handedMoney); // 所持金とチケットの金額確認処理
         prosessPurchasedTicketInventory(ticketPrice, ticketCount); // チケット購入後の在庫と売上処理
+        ticket(ticketPrice);
     }
 
     /**
@@ -146,6 +148,14 @@ public class TicketBooth {
         } else {
             salesProceeds = boughtTicketPrice;
         }
+    }
+
+    /**
+     * @param ticketPrice チケットの値段
+     */
+    private Ticket ticket(int ticketPrice) {
+        Ticket ticket = new Ticket(ticketPrice);
+        return ticket;
     }
 
     public static class TicketSoldOutException extends RuntimeException {
