@@ -25,8 +25,6 @@ public class TicketBooth {
     //                                                                          Definition
     //                                                                          ==========
     private static final int MAX_QUANTITY = 10;
-    private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
-    private static final int TWO_DAY_PRICE = 13200;
 
     // ===================================================================================
     //                                                                           Attribute
@@ -79,21 +77,20 @@ public class TicketBooth {
 
     // done リファクタリング途中　チケット購入のフローをもう少しまとめたい (2020/10/16)
     public Ticket buyOneDayPassport(int handedMoney) {
-        final int ticketPrice = ONE_DAY_PRICE;
-        doBuyPassport(1, ticketPrice, handedMoney);
-
         final TicketTypes ticketTypes = TicketTypes.ONE_DAY_TICKET; // TicketTypesクラスから判別用の値を取得する
+        final int ticketPrice = ticketTypes.getTicketPrice();
+        final int ticketCount = ticketTypes.getTicketDays();
+        doBuyPassport(ticketCount, ticketPrice, handedMoney);
         Ticket ticket = new Ticket(ticketPrice, ticketTypes);
         return ticket;
     }
 
     public TicketBuyResult buyTwoDayPassport(int handedMoney) {
-        final int ticketPrice = TWO_DAY_PRICE;
-        doBuyPassport(2, ticketPrice, handedMoney);
-
-        final int change = handedMoney - ticketPrice;
-        // TODO ticketクラスの作成もdoBuyPassportで行う ← 後ほど対応します
         final TicketTypes ticketTypes = TicketTypes.TWO_DAY_TICKET; // TicketTypesクラスから判別用の値を取得する
+        final int ticketPrice = ticketTypes.getTicketPrice();
+        final int ticketCount = ticketTypes.getTicketDays();
+        final int change = handedMoney - ticketPrice;
+        doBuyPassport(ticketCount, ticketPrice, handedMoney);
         Ticket ticket = new Ticket(ticketPrice, ticketTypes);
         TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
 
