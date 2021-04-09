@@ -169,10 +169,10 @@ public class Step05ClassTest extends PlainTestCase {
         log(twoDayPassport.getDisplayPrice());
         // TODO プログラムにもコードを読む人にもわかるようにチケットを判別する処理を追加する。
         // if文を使用して判別処理を行う
-        if (twoDayPassport.getTicketType().equals("")) {
-            log("");
+        if (twoDayPassport.getTicketType().equals("oneDayTicket")) {
+            log("ONE_DAY_PASS");
         } else {
-            log("");
+            log("TWO_DAY_PASS");
         }
     }
 

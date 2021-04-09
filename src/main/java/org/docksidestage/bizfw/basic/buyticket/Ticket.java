@@ -25,13 +25,13 @@ public class Ticket {
     //                                                                           Attribute
     //                                                                           =========
     private final int displayPrice;
-    private final String ticketType;
+    private final TicketTypes ticketType;
     private boolean alreadyIn;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public Ticket(int displayPrice, String ticketType) {
+    public Ticket(int displayPrice, TicketTypes ticketType) {
         this.displayPrice = displayPrice;
         this.ticketType = ticketType;
     }
@@ -53,7 +53,7 @@ public class Ticket {
         return displayPrice;
     }
 
-    public String getTicketType() {
+    public TicketTypes getTicketType() {
         return ticketType;
     }
 
