@@ -19,6 +19,7 @@ import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
+import org.docksidestage.bizfw.basic.buyticket.TicketTypes;
 import org.docksidestage.unit.PlainTestCase;
 
 // done yamaguchi author変えてください by jflute (2020/10/16)
@@ -169,10 +170,10 @@ public class Step05ClassTest extends PlainTestCase {
         log(twoDayPassport.getDisplayPrice());
         // TODO プログラムにもコードを読む人にもわかるようにチケットを判別する処理を追加する。
         // if文を使用して判別処理を行う
-        if (twoDayPassport.getTicketType().equals("oneDayTicket")) {
-            log("ONE_DAY_PASS");
-        } else {
+        if (twoDayPassport.getTicketTypes().equals(TicketTypes.TWO_DAY_TICKET)) {
             log("TWO_DAY_PASS");
+        } else {
+            log("ONE_DAY_PASS");
         }
     }
 

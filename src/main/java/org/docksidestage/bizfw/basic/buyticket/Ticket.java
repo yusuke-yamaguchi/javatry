@@ -25,15 +25,15 @@ public class Ticket {
     //                                                                           Attribute
     //                                                                           =========
     private final int displayPrice;
-    private final TicketTypes ticketType;
+    private final TicketTypes ticketTypes;
     private boolean alreadyIn;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public Ticket(int displayPrice, TicketTypes ticketType) {
+    public Ticket(int displayPrice, TicketTypes ticketTypes) {
         this.displayPrice = displayPrice;
-        this.ticketType = ticketType;
+        this.ticketTypes = ticketTypes;
     }
 
     // ===================================================================================
@@ -53,8 +53,8 @@ public class Ticket {
         return displayPrice;
     }
 
-    public TicketTypes getTicketType() {
-        return ticketType;
+    public TicketTypes getTicketTypes() {
+        return ticketTypes;
     }
 
     public boolean isAlreadyIn() {

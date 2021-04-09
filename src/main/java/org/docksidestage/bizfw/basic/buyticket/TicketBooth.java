@@ -82,8 +82,8 @@ public class TicketBooth {
         final int ticketPrice = ONE_DAY_PRICE;
         doBuyPassport(1, ticketPrice, handedMoney);
 
-        final TicketTypes ticketType = TicketTypes.ONE_DAY_TICKET; // TicketTypesクラスから判別用の値を取得する
-        Ticket ticket = new Ticket(ticketPrice, ticketType);
+        final TicketTypes ticketTypes = TicketTypes.ONE_DAY_TICKET; // TicketTypesクラスから判別用の値を取得する
+        Ticket ticket = new Ticket(ticketPrice, ticketTypes);
         return ticket;
     }
 
@@ -93,8 +93,8 @@ public class TicketBooth {
 
         final int change = handedMoney - ticketPrice;
         // TODO ticketクラスの作成もdoBuyPassportで行う ← 後ほど対応します
-        final TicketTypes ticketType = TicketTypes.TWO_DAY_TICKET; // TicketTypesクラスから判別用の値を取得する
-        Ticket ticket = new Ticket(ticketPrice, ticketType);
+        final TicketTypes ticketTypes = TicketTypes.TWO_DAY_TICKET; // TicketTypesクラスから判別用の値を取得する
+        Ticket ticket = new Ticket(ticketPrice, ticketTypes);
         TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
 
         return buyResult;
