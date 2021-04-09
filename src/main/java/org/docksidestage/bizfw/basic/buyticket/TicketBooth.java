@@ -81,7 +81,7 @@ public class TicketBooth {
         final int ticketPrice = ticketTypes.getTicketPrice();
         final int ticketCount = ticketTypes.getTicketDays();
         doBuyPassport(ticketCount, ticketPrice, handedMoney);
-        Ticket ticket = new Ticket(ticketPrice, ticketTypes);
+        final Ticket ticket = new Ticket(ticketTypes);
         return ticket;
     }
 
@@ -91,7 +91,7 @@ public class TicketBooth {
         final int ticketCount = ticketTypes.getTicketDays();
         final int change = handedMoney - ticketPrice;
         doBuyPassport(ticketCount, ticketPrice, handedMoney);
-        Ticket ticket = new Ticket(ticketPrice, ticketTypes);
+        final Ticket ticket = new Ticket(ticketTypes);
         TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
 
         return buyResult;

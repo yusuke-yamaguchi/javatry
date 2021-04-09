@@ -168,7 +168,7 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
         Ticket twoDayPassport = twoDayPassportResult.getTicket();
         log(twoDayPassport.getDisplayPrice());
-        // TODO プログラムにもコードを読む人にもわかるようにチケットを判別する処理を追加する。
+        // done プログラムにもコードを読む人にもわかるようにチケットを判別する処理を追加する。
         // if文を使用して判別処理を行う
         if (twoDayPassport.getTicketTypes().equals(TicketTypes.TWO_DAY_TICKET)) {
             log("TWO_DAY_PASS");
@@ -182,7 +182,20 @@ public class Step05ClassTest extends PlainTestCase {
      * (TwoDayPassportなのに一回しか利用できません。複数日数に対応できるようにTicketを修正しましょう)
      */
     public void test_class_moreFix_usePluralDays() {
-        // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 20000;
+        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
+        Ticket twoDayPassport = twoDayPassportResult.getTicket();
+
+        twoDayPassport.doInPark();
+        twoDayPassport.doInPark();
+        // twoDayPassport.doInPark();
+
+        if (twoDayPassport.isAlreadyIn()) {
+            log("入園できません");
+        } else {
+            log("入園できます");
+        }
     }
 
     // ===================================================================================
