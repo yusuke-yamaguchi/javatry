@@ -207,6 +207,22 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder_four() {
         // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 30000;
+        TicketBuyResult fourDayPassportResult = booth.buyFourDayPassport(handedMoney);
+        Ticket fourDayPassport = fourDayPassportResult.getTicket();
+
+        fourDayPassport.doInPark();
+        fourDayPassport.doInPark();
+        fourDayPassport.doInPark();
+        fourDayPassport.doInPark();
+        fourDayPassport.doInPark();
+
+        if (fourDayPassport.isAlreadyIn()) {
+            log("入園できません");
+        } else {
+            log("入園できます");
+        }
     }
 
     /**

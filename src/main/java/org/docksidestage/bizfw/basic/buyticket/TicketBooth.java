@@ -97,6 +97,19 @@ public class TicketBooth {
         return buyResult;
     }
 
+    // FourDayPassport購入用
+    public TicketBuyResult buyFourDayPassport(int handedMoney) {
+        final TicketTypes ticketTypes = TicketTypes.FOUR_DAY_TICKET;
+        final int ticketPrice = ticketTypes.getTicketPrice();
+        final int ticketCount = ticketTypes.getTicketDays();
+        final int change = handedMoney - ticketPrice;
+        doBuyPassport(ticketCount, ticketPrice, handedMoney);
+        final Ticket ticket = new Ticket(ticketTypes);
+        TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
+
+        return buyResult;
+    }
+
     /**
      * チケット購入周りの処理
      * @param ticketCount チケット枚数
