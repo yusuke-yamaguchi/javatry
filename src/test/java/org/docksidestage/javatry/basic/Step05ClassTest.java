@@ -212,11 +212,9 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBuyResult fourDayPassportResult = booth.buyFourDayPassport(handedMoney);
         Ticket fourDayPassport = fourDayPassportResult.getTicket();
 
-        fourDayPassport.doInPark();
-        fourDayPassport.doInPark();
-        fourDayPassport.doInPark();
-        fourDayPassport.doInPark();
-        fourDayPassport.doInPark();
+        for (int i = 0; i < 4; i++) {
+            fourDayPassport.doInPark();
+        }
 
         if (fourDayPassport.isAlreadyIn()) {
             log("入園できません");
@@ -231,6 +229,14 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder_night() {
         // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 8000;
+        TicketBuyResult nightOnlyTwoDayPassportResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+        Ticket nightOnlyTwoDayPassport = nightOnlyTwoDayPassportResult.getTicket();
+
+        for (int i = 0; i < 2; i++) {
+            nightOnlyTwoDayPassport.doInPark();
+        }
     }
 
     /**

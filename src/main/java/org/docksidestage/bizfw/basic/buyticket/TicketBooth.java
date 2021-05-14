@@ -89,8 +89,9 @@ public class TicketBooth {
         final TicketTypes ticketTypes = TicketTypes.TWO_DAY_TICKET; // TicketTypesクラスから判別用の値を取得する
         final int ticketPrice = ticketTypes.getTicketPrice();
         final int ticketCount = ticketTypes.getTicketDays();
-        final int change = handedMoney - ticketPrice;
         doBuyPassport(ticketCount, ticketPrice, handedMoney);
+
+        final int change = handedMoney - ticketPrice; // TODO お釣り算出用のメソッドを追加する
         final Ticket ticket = new Ticket(ticketTypes);
         TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
 
@@ -102,8 +103,23 @@ public class TicketBooth {
         final TicketTypes ticketTypes = TicketTypes.FOUR_DAY_TICKET;
         final int ticketPrice = ticketTypes.getTicketPrice();
         final int ticketCount = ticketTypes.getTicketDays();
-        final int change = handedMoney - ticketPrice;
         doBuyPassport(ticketCount, ticketPrice, handedMoney);
+
+        final int change = handedMoney - ticketPrice;
+        final Ticket ticket = new Ticket(ticketTypes);
+        TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
+
+        return buyResult;
+    }
+
+    // NightOnlyTwoDayPassport購入用
+    public TicketBuyResult buyNightOnlyTwoDayPassport(int handedMoney) {
+        final TicketTypes ticketTypes = TicketTypes.TWO_DAY_NIGHT_TICKET;
+        final int ticketPrice = ticketTypes.getTicketPrice();
+        final int ticketCount = ticketTypes.getTicketDays();
+        doBuyPassport(ticketCount, ticketPrice, handedMoney);
+
+        final int change = handedMoney - ticketPrice;
         final Ticket ticket = new Ticket(ticketTypes);
         TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
 

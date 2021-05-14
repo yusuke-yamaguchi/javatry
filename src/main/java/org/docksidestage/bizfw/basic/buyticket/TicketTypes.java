@@ -6,7 +6,10 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 public enum TicketTypes {
 
-    ONE_DAY_TICKET("oneDayTicket", 1, 7400), TWO_DAY_TICKET("twoDayTicket", 2, 13200), FOUR_DAY_TICKET("fourDayTicket", 4, 22400);
+    ONE_DAY_TICKET("oneDayTicket", 1, 7400), //
+    TWO_DAY_TICKET("twoDayTicket", 2, 13200), //
+    FOUR_DAY_TICKET("fourDayTicket", 4, 22400), //
+    TWO_DAY_NIGHT_TICKET("twoDayNightTicket", 2, 7400);
 
     private final String ticketTypes;
     private final int ticketDays;
