@@ -90,10 +90,7 @@ public class TicketBooth {
         final int ticketPrice = ticketTypes.getTicketPrice();
         final int ticketCount = ticketTypes.getTicketDays();
         doBuyPassport(ticketCount, ticketPrice, handedMoney);
-
-        final int change = handedMoney - ticketPrice; // TODO お釣り算出用のメソッドを追加する
-        final Ticket ticket = new Ticket(ticketTypes);
-        TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
+        TicketBuyResult buyResult = buyPassportResult(ticketTypes, ticketPrice, handedMoney); // done チケット購入結果取得用の共通処理の追加
 
         return buyResult;
     }
@@ -104,10 +101,7 @@ public class TicketBooth {
         final int ticketPrice = ticketTypes.getTicketPrice();
         final int ticketCount = ticketTypes.getTicketDays();
         doBuyPassport(ticketCount, ticketPrice, handedMoney);
-
-        final int change = handedMoney - ticketPrice;
-        final Ticket ticket = new Ticket(ticketTypes);
-        TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
+        TicketBuyResult buyResult = buyPassportResult(ticketTypes, ticketPrice, handedMoney);
 
         return buyResult;
     }
@@ -118,10 +112,7 @@ public class TicketBooth {
         final int ticketPrice = ticketTypes.getTicketPrice();
         final int ticketCount = ticketTypes.getTicketDays();
         doBuyPassport(ticketCount, ticketPrice, handedMoney);
-
-        final int change = handedMoney - ticketPrice;
-        final Ticket ticket = new Ticket(ticketTypes);
-        TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
+        TicketBuyResult buyResult = buyPassportResult(ticketTypes, ticketPrice, handedMoney);
 
         return buyResult;
     }
@@ -136,6 +127,20 @@ public class TicketBooth {
         assertInventoryRemained(ticketCount); // 在庫数確認処理
         possessionMoneyEnough(ticketPrice, handedMoney); // 所持金とチケットの金額確認処理
         prosessPurchasedTicketInventory(ticketPrice, ticketCount); // チケット購入後の在庫と売上処理
+    }
+
+    /**
+     * チケット購入結果取得用の共通処理
+     * @param ticketTypes チケット種別
+     * @param ticketPrice チケットの値段
+     * @param handedMoney 所持金
+     */
+    private TicketBuyResult buyPassportResult(TicketTypes ticketTypes, int ticketPrice, int handedMoney) {
+        final int change = handedMoney - ticketPrice;
+        final Ticket ticket = new Ticket(ticketTypes);
+        TicketBuyResult buyResult = new TicketBuyResult(ticket, change);
+
+        return buyResult;
     }
 
     /**

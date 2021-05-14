@@ -234,9 +234,8 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBuyResult nightOnlyTwoDayPassportResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
         Ticket nightOnlyTwoDayPassport = nightOnlyTwoDayPassportResult.getTicket();
 
-        for (int i = 0; i < 2; i++) {
-            nightOnlyTwoDayPassport.doInPark();
-        }
+        int change = nightOnlyTwoDayPassportResult.getChange();
+        log(change);
     }
 
     /**

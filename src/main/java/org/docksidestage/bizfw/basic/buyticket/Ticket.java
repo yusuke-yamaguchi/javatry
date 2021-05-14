@@ -47,9 +47,9 @@ public class Ticket {
     public void doInPark() {
         if (ticketDays > doInPark) {
             doInPark += 1;
-            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         } else {
             alreadyIn = true;
+            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         }
     }
 
