@@ -52,7 +52,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         int oneDayPrice = 7400;
         int quantity = 10;
-        Integer salesProceeds = null;
+        // Integer salesProceeds = null; // nullに加算ができなくてエラーが起きる（起きていた）
+        Integer salesProceeds = 0; // 初期値は0を設定
 
         //
         // [buy one-day passport]
@@ -65,12 +66,14 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
             throw new IllegalStateException("Short money: handedMoney=" + handedMoney);
         }
         --quantity;
-        salesProceeds = handedMoney;
+        // salesProceeds = handedMoney; // 手持ちのお金が全部売上になるのはおかしい
+        salesProceeds += oneDayPrice; // 1日パスポート（oneDayPrice）の金額を売上に加算する
 
         //
         // [ticket info]
         //
-        int displayPrice = quantity;
+        // int displayPrice = quantity; // 表示価格に在庫数を入れるのはおかしい。
+        int displayPrice = oneDayPrice; // 表示価格に1日パスポート（oneDayPrice）の値を入れる
         boolean alreadyIn = false;
 
         // other processes here...
@@ -88,14 +91,17 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [final process]
         //
-        saveBuyingHistory(quantity, displayPrice, salesProceeds, alreadyIn);
+        // saveBuyingHistory(quantity, displayPrice, salesProceeds, alreadyIn); // displayPriceとsalesProceedsが逆
+        saveBuyingHistory(quantity, salesProceeds, displayPrice, alreadyIn); // 引数の順番を修正
     }
 
     private void saveBuyingHistory(int quantity, Integer salesProceeds, int displayPrice, boolean alreadyIn) {
         if (alreadyIn) {
             // only logging here (normally e.g. DB insert)
-            showTicketBooth(displayPrice, salesProceeds);
-            showYourTicket(quantity, alreadyIn);
+            // showTicketBooth(displayPrice, salesProceeds); // それぞれで渡しているdisplayPriceとquantityが逆になっている
+            // showYourTicket(quantity, alreadyIn);
+            showTicketBooth(quantity, salesProceeds); // 正しい値が渡されるようにdisplayPriceとquantityを入れ替え
+            showYourTicket(displayPrice, alreadyIn);
         }
     }
 
